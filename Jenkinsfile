@@ -10,7 +10,7 @@ pipeline {
             stage('Install dependencies') {
                 steps{
                     bat '''
-                        python -m venv venv
+                        "C:\\Users\\ADMIN\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe" -m venv venv
                         call venv\\Scripts\\activate
                         pip install --upgrade pip
                         pip install pytest
@@ -30,7 +30,7 @@ pipeline {
                 steps {
                     bat '''
                         call venv//Scripts//activate
-                        python register.py
+                        "C:\\Users\\ADMIN\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe" register.py
                     '''
                 }
             }
