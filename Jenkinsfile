@@ -10,12 +10,9 @@ pipeline {
             stage('Install dependencies') {
                 steps{
                     bat '''
-                        "C:\\Users\\ADMIN\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe" -m venv venv'''
-                    bat '''
-                        .\\venv\\Scripts\\activate && python -m
-                        pip install --upgrade pip'''
-                    bat '''
-                        .\\venv\\Scripts\\activate && python -m
+                        "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" -m venv venv
+                        call .\\venv\\Scripts\\activate
+                        pip install --upgrade pip
                         pip install pytest
                     '''
                 }
@@ -23,7 +20,7 @@ pipeline {
             stage('Test') {
                 steps{
                     bat '''
-                        .\\venv\\Scripts\\activate && python
+                        call .\\venv\\Scripts\\activate
                         pytest test.py
                     '''
                 }
@@ -32,8 +29,8 @@ pipeline {
             stage('Deploy') {
                 steps {
                     bat '''
-                        .\\venv\\Scripts\\activate
-                        "C:\\Users\\ADMIN\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe" register.py
+                        call .\\venv\\Scripts\\activate
+                        "C:\\Users\\ADMIN\\AppData\\Local\\Programs\\Python\\Python313\\python.exe" register.py
                     '''
                 }
             }
